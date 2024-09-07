@@ -12,8 +12,8 @@ const Navbar = () => {
   const [token, setToken] = useState(true);
 
   return (
-    <div className="text-sm py-4 mb-5 border-b border-b-gray-200 fixed top-0 left-0 right-0 z-10 bg-white">
-      <div className="sm:px-10 md:px-16 lg:px-32 flex items-center justify-between mx-3">
+    <div className="text-sm py-4 border-b-2 border-b-gray-200 fixed top-0 left-0 right-0 z-10  bg-white px:10 px-5 sm:px-5 md:px-20 lg:px-32">
+      <div className="flex items-center justify-between">
         <img
           src={assets.logo}
           alt="logo image"
@@ -51,7 +51,7 @@ const Navbar = () => {
                 alt="dropdown icon"
                 className="w-2.5"
               />
-              <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-10 hidden group-hover:block">
+              <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-2 hidden group-hover:block">
                 <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
                   <p
                     className="hover:text-black cursor-pointer"

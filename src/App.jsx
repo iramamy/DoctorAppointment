@@ -14,10 +14,14 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 const App = () => {
   return (
-    <div className="mx-4 sm:mx-[10%]">
+    <div className="pt-36  mx-4 sm:mx-[10%]">
+      <ScrollToTop />
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -27,7 +31,7 @@ const App = () => {
         <Route path="/appointment/:docId" element={<Appointment />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/doctors/" element={<Doctors />} />
-        <Route path="/doctors/:specialist" element={<Doctors />} />
+        <Route path="/doctors/:speciality" element={<Doctors />} />
       </Routes>
       <Footer />
     </div>
