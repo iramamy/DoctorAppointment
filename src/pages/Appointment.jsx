@@ -5,6 +5,26 @@ import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import CalendarComponent from "../components/Calendar";
+import BackArrow from "../components/BackArrow";
+
+// Define time slots
+const morningSlots = [
+  "09:00 am",
+  "09:30 am",
+  "10:00 am",
+  "10:30 am",
+  "11:00 am",
+  "11:30 am",
+];
+
+const afternoonSlots = [
+  "02:00 pm",
+  "02:30 pm",
+  "03:00 pm",
+  "03:30 pm",
+  "04:00 pm",
+  "04:30 pm",
+];
 
 const Appointment = () => {
   const { docId } = useParams();
@@ -16,6 +36,8 @@ const Appointment = () => {
     startDate: new Date(),
     endDate: new Date(),
   });
+
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   const fetchDocData = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
@@ -30,15 +52,15 @@ const Appointment = () => {
     const newStartDate = new Date(selection.startDate);
     const newEndDate = new Date(selection.endDate);
 
-    if (newEndDate <= newStartDate) {
-      newEndDate.setDate(newStartDate.getDate());
-    }
-
     setDateRange({
-      ...dateRange,
       startDate: newStartDate,
       endDate: newEndDate,
     });
+  };
+
+  const submitData = () => {
+    console.log(dateRange.startDate);
+    console.log(selectedSlot);
   };
 
   return (
@@ -46,6 +68,9 @@ const Appointment = () => {
       {docInfo && (
         <div>
           {/* Doctor details */}
+          <div className="mb-10">
+            <BackArrow />
+          </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <div>
               <img
@@ -106,60 +131,38 @@ const Appointment = () => {
           </p>
           <p className="mt-4 font-medium text-sm text-gray-600">Morning</p>
           <div className="flex items-center gap-3 w-full mt-4 justify-between overflow-x-scroll">
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              08:00 am
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              08:30 am
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              09:00 am
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              09:30 am
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              11:00 am
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              11:30 am
-            </span>
+            {morningSlots.map((slot, index) => (
+              <span
+                key={index}
+                onClick={() => setSelectedSlot(slot)}
+                className={`py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200 ${
+                  selectedSlot === slot ? "bg-primary text-white" : ""
+                }`}
+              >
+                {slot}
+              </span>
+            ))}
           </div>
 
           <p className="mt-10 font-medium text-sm text-gray-600">Afternoon</p>
           <div className="flex items-center gap-3 w-full mt-4 justify-between overflow-x-scroll">
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              02:00 pm
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              02:30 pm
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              03:00 pm
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              03:30 pm
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              04:00 pm
-            </span>
-            <span className="py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200">
-              {" "}
-              04:30 am
-            </span>
+            {afternoonSlots.map((slot, index) => (
+              <span
+                key={index}
+                onClick={() => setSelectedSlot(slot)}
+                className={`py-2 px-5 border text-sm font-light rounded-full hover:bg-primary hover:text-white hover:border-none flex-shrink-0 cursor-pointer transition-all duration-200 ${
+                  selectedSlot === slot ? "bg-primary text-white" : ""
+                }`}
+              >
+                {slot}
+              </span>
+            ))}
           </div>
-          <button className="py-3 px-10 border text-sm font-light rounded-full mt-10 bg-primary text-white  hover:scale-105">
+          <button
+            type="submit"
+            onClick={submitData}
+            className="py-3 px-10 border text-sm font-light rounded-full mt-10 bg-primary text-white  hover:scale-105"
+          >
             Book an Appointment
           </button>
         </div>

@@ -18,7 +18,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
-    <div className="pt-36  mx-4 sm:mx-[10%]">
+    <div className="pt-20 mx-4 sm:mx-[10%]">
       <ScrollToTop />
       <Navbar />
 

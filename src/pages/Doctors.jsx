@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { specialityData } from "../assets/assets";
 import SingleDoctor from "../components/SingleDoctor";
+import BackArrow from "../components/BackArrow";
 
 const Doctors = () => {
   const { speciality } = useParams();
@@ -28,6 +29,9 @@ const Doctors = () => {
 
   return (
     <div className="space-y-4">
+      <div className="mb-10">
+        <BackArrow />
+      </div>
       <p className="text-gray-600">Our Specialists:</p>
       <div className="flex flex-col sm:flex-row items-start gap-5">
         <div className="flex flex-col gap-2 text-sm text-gray-600 ">
