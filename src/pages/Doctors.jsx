@@ -10,6 +10,7 @@ import BackArrow from "../components/BackArrow";
 const Doctors = () => {
   const { speciality } = useParams();
   const { doctors } = useContext(AppContext);
+  const [showFilter, setShowFilter] = useState(false);
 
   const [filterDoc, setFilterDoc] = useState([]);
 
@@ -34,7 +35,19 @@ const Doctors = () => {
       </div>
       <p className="text-gray-600">Our Specialists:</p>
       <div className="flex flex-col sm:flex-row items-start gap-5">
-        <div className="flex flex-col gap-2 text-sm text-gray-600 ">
+        <button
+          className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${
+            showFilter ? "bg-primary text-white" : ""
+          }`}
+          onClick={() => setShowFilter((prev) => !prev)}
+        >
+          Filters
+        </button>
+        <div
+          className={`xs:w-full flex flex-col gap-2 text-sm text-gray-600 ${
+            showFilter ? "flex" : "hidden sm:flex"
+          }`}
+        >
           <p
             className={`pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer hover:border-gray-400 hover:text-gray-800 ${
               !speciality && "bg-indigo-100 text-black"
