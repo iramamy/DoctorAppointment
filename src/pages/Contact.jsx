@@ -25,8 +25,9 @@ const Contact = () => {
             54706 Streat road 450, <br /> California, USA
           </p>
           <p className="text-gray-500">
-            Tel: (+1) 23-456-78-9 <br />
-            Email: example@text.com
+            Tel: +(123)-3-456-789
+            <br />
+            Email: example@example.com
           </p>
           <p className="font-semibold text-lg">CARREERS AT PRESCRIPTO</p>
           <p className="text-gray-500">
