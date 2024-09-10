@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 
 // Custom components
-import FormSchema from "./ValidationForm";
+import { FormSchema } from "./ValidationForm";
 
 const Login = ({ props }) => {
   const [state, setState] = useState("Sign Up");

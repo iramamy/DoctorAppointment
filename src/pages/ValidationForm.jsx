@@ -31,4 +31,27 @@ const FormSchema = ({ isSignUp }) => {
   );
 };
 
-export default FormSchema;
+const phoneRegEx =
+  /^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?[-.\s]?)(\d{1,4}[-.\s]?){1,2}\d{1,4}$/;
+
+const ProfileFormSchema = () => {
+  return yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup
+      .string()
+      .email("Invalid email")
+      .required("Please enter your email"),
+    phone: yup
+      .string()
+      .matches(phoneRegEx, "Phone number is not valid")
+      .required("Phone number required"),
+    address1: yup.string().required("Enter your address"),
+    gender: yup.string().required("Gender is required"),
+    birth: yup
+      .date()
+      .required("Please enter your birth date")
+      .max(new Date(), "Birth date invalid"),
+  });
+};
+
+export { FormSchema, ProfileFormSchema };
