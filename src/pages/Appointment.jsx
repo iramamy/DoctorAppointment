@@ -6,6 +6,7 @@ import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import CalendarComponent from "../components/Calendar";
 import BackArrow from "../components/BackArrow";
+import RelatedDoctors from "../components/RelatedDoctors";
 
 // Define time slots
 const morningSlots = [
@@ -68,6 +69,7 @@ const Appointment = () => {
       {docInfo && (
         <div>
           {/* Doctor details */}
+
           <div className="mb-10">
             <BackArrow />
           </div>
@@ -166,6 +168,15 @@ const Appointment = () => {
             Book an Appointment
           </button>
         </div>
+      </div>
+      <div className="flex flex-col items-center gap-4 my-16 text-gray-900">
+        <h1 className="text-3xl font-medium">Related doctors</h1>
+        <p className="sm:w-1/3 text-center text-sm">
+          Browse through our list of extensive list of trusted doctors.
+        </p>
+        {docInfo && (
+          <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
+        )}
       </div>
     </>
   );
