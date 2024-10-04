@@ -39,7 +39,7 @@ Once the dependencies are installed, you can start the React development server 
 npm start
 ```
 
-The development server will be available at [http://localhost:3000](http://localhost:5173).
+The development server will be available at [http://localhost:5173](http://localhost:5173).
 
 ## 🛠️ Build for Production
 
